@@ -1,0 +1,4 @@
+HackingScala
+============
+
+Hacking Scala
