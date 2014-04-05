@@ -52,14 +52,30 @@ pair._1
 pair._2
 
 // Set: immutable by default.
-var jetSet = Set("a", "b")
+var jetSet = Set("a", "b")	// immutable -> point to another -> var
 jetSet += "c"	// jetSet == (a, b, c), a new instance of set
 jetSet.contains("d")
 
 import scala.collection.mutable.Set
-val movieSet = Set("duanduan", "canhong")	// Even mutable, can still change
+val movieSet = Set("duanduan", "canhong")	// Mutable, can change, so val always points to the original one
 movieSet += "love"
 println(movieSet)
 
-// Map
+// Map 
 import scala.collection.mutable.Map
+val treasureMap = Map[Int, String]()
+treasureMap += (1 -> "One")
+treasureMap += (2 -> "Two")
+treasureMap(2)
+// (immutable by default if not importing the class)
+val romanNum = Map(
+		1 -> "one", 2 -> "two"
+	)
+
+// File IO
+import scala.io.Source
+if (args.length > 0) {
+	for (line <- Source.fromFile(args(3)).getLines)
+		print(line.length + " " + line)
+} else
+	Console.err.println("File error")
