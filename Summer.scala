@@ -1,5 +1,5 @@
 import CheckSumAccumulator.calculate
-object Summer {
+object Summer {		// extends Application
 	def main(args: Array[String]) {
 		for (arg <- args)
 			println(arg + ": " + calculate(arg))
