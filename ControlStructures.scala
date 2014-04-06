@@ -32,3 +32,32 @@ def scalaFiles =
 	} yield file  // scalaFiles = [File]
 
 // try-catch-finally
+try {
+	val f = new FileReader("input.txt")
+} catch {
+	case ex: FileNotFoundException => //handler
+	case ex: IOException => //another handler
+} finally {
+	file.close()
+}
+//return value
+def urlFor(path: String) = 
+	try {
+		new URL(path)
+	} catch {
+		case e: MalformedURLException => new URL("http://e.cn")
+	}
+
+// finally override the value of previous
+def f(): Int = try { return 1} finally { return 2 }	//2
+def g(): Int = try { 1 } finally { 2 }	// 1
+
+// match and assign value
+val firstArg = if (!args.isEmpty) args(0) else ""
+val friend = 
+	firstArg match {
+		case "salt" => "tommy"
+		case "haha" => "jason"
+		case _ => "huh?"
+	}
+println(friend)
