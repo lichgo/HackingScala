@@ -53,5 +53,11 @@ addMore(10)	//11
 nums.foreach(sum += _)	//accum add
 
 
+// repeated parameter
+def echo(args: String*) = 
+	for (arg <- args) println(arg)
+echo("one", "two")
+val arr = Array("What", "Miahcel")
+echo(arr: _*)
 
 
