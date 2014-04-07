@@ -42,3 +42,16 @@ val a = sum _
 a(1, 2, 3) // a.apply(1, 2, 3) > sum(1,2,3)
 val b = sum(1, _: Int, 3)
 b(3)
+
+
+
+
+// closure
+var more = 1
+val addMore = (x: Int) => x + more
+addMore(10)	//11
+nums.foreach(sum += _)	//accum add
+
+
+
+
