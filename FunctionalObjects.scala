@@ -12,13 +12,13 @@ class Rational(n: Int, d: Int) {
 
 	def +(that: Rational): Rational = 
 		new Rational(
-			numer * that.denom + that.number * denom,
+			numer * that.denom + that.numer * denom,
 			denom * that.denom
 		)
 	def +(i: Int): Rational
 
-	def lessThan(that: Rational) = 
-		if (this.lessThan(that)) that else this
+	//def lessThan(that: Rational): Rational = 
+		//if (this.lessThan(that)) that else this
 
 	private def gcd(a: Int, b: Int): Int = 
 		if (b == 0) a else gcd(b, a % b)

@@ -1,4 +1,4 @@
-import FunctionalObjects
+//import FunctionalObjects
 
 object Test {
 	def main(args: Array[String]) {
