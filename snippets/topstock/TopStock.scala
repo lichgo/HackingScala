@@ -4,7 +4,7 @@ import scala.actors._
 import Actor._
 
 object TopStock extends App {
-	val symbols = List( "AAPL", "GOOG", "IBM", "JAVA", "MSFT")
+	val symbols = List( "AAPL", "GOOG", "IBM", "JAVA", "MSFT" )
 	val receiver = self
 	val year = 2008
 	

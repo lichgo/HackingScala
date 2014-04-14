@@ -7,7 +7,7 @@ object Abstract {
 	
 		// higher-order function (use function as args)
 		def filesMatching(query: String, matcher: (String, String) => Boolean) = {
-			for (file <- filesHere; if matcher(file.getName, query))
+			for (file <- filesHere if matcher(file.getName, query))
 				yield file
 		}
 	
