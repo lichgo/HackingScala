@@ -46,6 +46,7 @@ object Trait {
 	
 	
 	// Ordered
+	/*
 	class Rational(n: Int, d: Int) extends Ordered[Rational] {
 	    val number: Int = 1
 	    val denom: Int = 4
@@ -58,5 +59,5 @@ object Trait {
 	val third = new Rational(1, 3)
 	half < third
 	half >= third
-
+*/
 }

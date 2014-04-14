@@ -15,7 +15,7 @@ class Rational(n: Int, d: Int) {
 			numer * that.denom + that.numer * denom,
 			denom * that.denom
 		)
-	def +(i: Int): Rational
+	//def +(i: Int): Rational
 
 	//def lessThan(that: Rational): Rational = 
 		//if (this.lessThan(that)) that else this

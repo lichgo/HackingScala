@@ -1,8 +1,9 @@
+package HackingScala.snippets.topstock
+
 import scala.actors._
 import Actor._
 
-object TopStock {
-  def main(args: Array[String]) {
+object TopStock extends App {
 	val symbols = List( "AAPL", "GOOG", "IBM", "JAVA", "MSFT")
 	val receiver = self
 	val year = 2008
@@ -10,10 +11,6 @@ object TopStock {
 	symbols.foreach {
 		symbol => actor { receiver ! getYearEndClosing(symbol, year) }
 	}
-	
-	val (topStock, highestPrice) = getTopStock(symbols.length)
-	
-	printf("Top stock of %d is %s closing at price %f\n", year, topStock, highestPrice)
 	
 	def getYearEndClosing(symbol: String, year: Int) = {
 		val url = "http://ichart.finance.yahoo.com/table.csv?s=" + symbol + "&a=11&b=01&c=" + year + "&d=11&e=31&f=" + year + "&g=m"
@@ -31,5 +28,9 @@ object TopStock {
 				}
 		}
 	}
-  }
+	
+	val (topStock, highestPrice) = getTopStock(symbols.length)
+	
+	printf("Top stock of %d is %s closing at price %f\n", year, topStock, highestPrice)
+	
 }

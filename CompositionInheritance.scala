@@ -47,7 +47,7 @@ object CompositionInheritance {
 		override val height: Int
 	) extends Element {
 		private val line = ch.toString * width
-		//def contents = Array.make(height, line)
+		def contents = Array("one", "two")//Array.make(height, line)
 	}
 	
 	// Create a factory for Element

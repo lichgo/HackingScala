@@ -48,7 +48,7 @@ object Abstract {
 		writer => writer.println(new java.util.Date)
 	)
 	
-	def withPrintWriter(file: File)(op: PrintWriter => Unit) {
+	def withPrintWriter2(file: File)(op: PrintWriter => Unit) {
 		val writer = new PrintWriter(file)
 		try {
 			op(writer)
@@ -57,7 +57,7 @@ object Abstract {
 		}
 	}
 	val file = new File("date.txt")
-	withPrintWriter(file) {
+	withPrintWriter2(file) {
 		writer => writer.println(new java.util.Date)
 	}
 
