@@ -44,7 +44,7 @@ object LoadXML extends App {
 				</subparent>
 			</parent>"""
 	
-	  val xmlSource = XML.loadString(source)
+	val xmlSource = XML.loadString(source)
 	// Save to file
 	for (hit <- strSource \\ "subparent" \\ "child")
 	  scala.xml.XML.save("result.xml", hit, "utf-8", true, null)
