@@ -1,0 +1,1 @@
+package object usage {  implicit class StringProcessor(val s: String) {    def increase = s.map(c => (c + 1).toChar);    def printout = println(s)  }}

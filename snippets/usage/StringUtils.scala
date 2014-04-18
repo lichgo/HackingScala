@@ -1,0 +1,1 @@
+object StringUtils {  implicit class StringImprovement(val s: String) {    def increment = s.map(c => (c + 1).toChar)  }}

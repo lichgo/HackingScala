@@ -1,0 +1,1 @@
+package HackingScala.snippets.usage { 	package A {	  // A.Person	  class Person	};		package B {	  // B.Person	  class Person;	  	  package C {	    // B.C.Person	    class Person {	      override def toString = "B.C.Person here"	    }	  }	};	object test {	  def main(args: Array[String]) {	    val f = new B.C.Person;	    println(f.toString)	  }	}}
