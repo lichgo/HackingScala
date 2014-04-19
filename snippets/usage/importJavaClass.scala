@@ -1,0 +1,1 @@
+import javax.swing.JFrame;object importJavaClass {    // Main needs to be called manually in interpreter	// But "scala" command can automatically lauch main()	def main(args: Array[String]) {	  val f = new JFrame;	  f.setVisible(true)	}}
