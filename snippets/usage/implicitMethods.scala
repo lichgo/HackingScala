@@ -9,8 +9,8 @@ import HackingScala.snippets.usage._
 
 object implicitMethods extends App {
   // Using regular object
-  println("HAL".increment) // Compile error
+  // println("HAL".increment) // Compile error
   
   // Using package object
-  println("IBM".increase)	// Still error
+  // println("IBM".increase)	// Still error
 }
