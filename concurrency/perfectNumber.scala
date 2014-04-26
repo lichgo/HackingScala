@@ -24,7 +24,7 @@ object perfectNumber extends App {
       val upper = candidate min (i + 1) * RANGE
       
       actor {
-        caller ! sumOfFactorsInRange(lower, upper, candidate)
+        caller ! sumOfFactorsInRange(lower, upper, candidate)	//send msg to caller
       }
     }
     
@@ -38,10 +38,28 @@ object perfectNumber extends App {
   }
   
   // Test
-  var start = (new Date).getTime
-  println(isPerfect(33550336) + ": " + ((new Date).getTime - start))
+  var startTime = (new Date).getTime
+  println(isPerfect(33550336) + ": " + ((new Date).getTime - startTime))
   
-  start = (new Date).getTime
-  println(isPerfectConcurrent(33550336) + ": " + ((new Date).getTime - start))
+  startTime = (new Date).getTime
+  println(isPerfectConcurrent(33550336) + ": " + ((new Date).getTime - startTime))
   
+  // Using high-order function
+  def countPerfectNumberInRange(start: Int, end: Int, isPerfectFinder: Int => Boolean) = {
+    val startTime = System.nanoTime()
+    
+    val numberOfPerfectNumbers = (0 /: (start to end)) {
+      (count, candidate) => if (isPerfectFinder(candidate)) count + 1 else count
+    }
+    
+    val endTime = System.nanoTime()
+    
+    println("Count: " + numberOfPerfectNumbers + "(" + (endTime - startTime) / 10000000000.0 + "s)")
+  }
+  
+  //Test
+  val start = 335503
+  val end = 336903
+  countPerfectNumberInRange(start, end, isPerfect)
+  countPerfectNumberInRange(start, end, isPerfectConcurrent)
 }
