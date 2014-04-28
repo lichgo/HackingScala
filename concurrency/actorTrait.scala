@@ -9,7 +9,7 @@ object actorTrait extends App {
     def act() {
       while (true) {
         receive {
-          // match msg invocation format from line 26
+          // match msg invocation format from line 26 (a tuple)
           case (caller: Actor, name: String, msg: String) =>
             caller ! (
               if (folks.contains(name)) String.format("%s: %s", name, msg)
@@ -28,10 +28,20 @@ object actorTrait extends App {
   service1 ! (self, "duanduan", "in HK")
   
   service1.start()
+
+  service1 ! (self, "eric", "in ST")
+  service1 ! (self, "andrew", "in SF")
   
   for (i <- 1 to 4) {
     receive {
       case msg => println(msg)
     }
   }
+
+  service1 ! "ping"
+  service1 ! "quit"
+  service1 ! "ping"
+
+  Thread.sleep(2000)
+  println("The last ping was not processed.")
 }
