@@ -1,6 +1,7 @@
 import scala.actors.Actor._
 
 object receiveWithin extends App {
+	
 	val caller = self
 
 	var accumulator = actor {

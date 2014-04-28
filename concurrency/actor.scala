@@ -1,6 +1,7 @@
 import scala.actors.Actor._
 
 object actor extends App {
+	
 	def isPrime(number: Int) = {
 		var result = true
 
