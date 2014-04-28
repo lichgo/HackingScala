@@ -1,6 +1,7 @@
-import scala.actors.Actor._
+import scala.actors._
+import Actor._
 
-object actor extends App {
+object actorInActor extends App {
 	def isPrime(number: Int) = {
 		var result = true
 
@@ -27,7 +28,7 @@ object actor extends App {
 			}
 		}
 	}
-
+	
 	// Send msg to the same act => run sequentially
 	primeActor ! (self, 2)
 	primeActor ! (self, 131)

@@ -1,9 +1,10 @@
-import scala.actors.Actor._
+import scala.actors._
+import Actor._
 
-object receiveWithin extends App {
+object receiveWithTimeout extends App {
 	val caller = self
 
-	var accumulator = actor {
+	val accumulator = actor {
 		var sum = 0
 		var continue = true
 		while (continue) {
