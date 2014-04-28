@@ -43,5 +43,5 @@ object actorTrait extends App {
   service1 ! "ping"
 
   Thread.sleep(2000)
-  println("The last ping was not processed")
+  println("The last ping was not processed.")
 }
