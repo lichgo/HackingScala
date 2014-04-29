@@ -12,6 +12,7 @@ object actorTrait extends App {
           // match msg invocation format from line 26 (a tuple)
           case (caller: Actor, name: String, msg: String) =>
             caller ! (
+              // *.contains(value)
               if (folks.contains(name)) String.format("%s: %s", name, msg)
               else String.format("There is no name(%s) here", name)
             )
@@ -32,7 +33,8 @@ object actorTrait extends App {
   service1 ! (self, "eric", "in ST")
   service1 ! (self, "andrew", "in SF")
   
-  for (i <- 1 to 4) {
+  for (i <- 1 to 3) {	// receive 3 times, so andrew msg will not be "received"
+    println("RECEIVING.....")
     receive {
       case msg => println(msg)
     }

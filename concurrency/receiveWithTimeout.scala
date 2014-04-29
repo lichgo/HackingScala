@@ -1,3 +1,5 @@
+package HackingScala.concurrency
+
 import scala.actors._
 import Actor._
 
@@ -23,8 +25,8 @@ object receiveWithTimeout extends App {
 	accumulator ! 2
 	accumulator ! 3
 
-	receiveWithin(1000) {
+	receiveWithin(2000) {
 		case result => println("Total is: " + result)
-		case _ => println("Handling other msg pattern")
+		//case _ => println("Handling other msg pattern")
 	}
 }

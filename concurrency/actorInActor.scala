@@ -1,3 +1,5 @@
+package HackingScala.concurrency
+
 import scala.actors._
 import Actor._
 
