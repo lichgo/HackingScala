@@ -55,4 +55,32 @@ object collections extends App {
   println(list.filter( i => i % 2 == 0 ))
   def isEven(i: Int) = i % 2 == 0
   println(list.filter( isEven _ ))
+  // element of a map is a tuple
+  val nameMap = Map( "jason" -> 25, "duanduan" -> 23 )
+  val people = nameMap.filter( (nameage: (String, Int)) => nameage._2 > 24 )
+  println("people: " + people)
+  
+  // zip
+  val zipList = List(1, 2, 3) zip List('a', 'b', 'c', 'd')
+  println(zipList)		// List((1,a), (2,b), (3,c)), d is ignored
+  
+  // partition
+  println(List(1,2,3,4,5,6,7,8) partition(_ % 2 == 1))	// (List(1, 3, 5, 7),List(2, 4, 6, 8)), return a tuple
+  
+  // find
+  println(List(1,2,3,4).find(i => i > 2))	// Some(3)	only the first one
+  
+  // drop
+  println(list.drop(3))	//List(4)
+  println(list.dropWhile(_ % 2 == 1))	//List(2,3,4)
+  
+  // foldLeft (foldRight)
+  val sum = list.foldLeft(100)( (m, n) => m + n ) // the first is element value, the second is tmp result
+  println("sum " + sum)
+  
+  // flatten
+  println( List(List(1, 2), List('a', 'b', "easy")) flatten )// List(1,2,a,b,easy) list allows multiple types in a list
+  
+  // flatmap
+  println( List( List(1,2), List(3,4) ).flatMap( x => x.map(_ + 2) ) )
 }
