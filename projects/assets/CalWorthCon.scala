@@ -3,7 +3,7 @@ package HackingScala.projects.assets
 import scala.actors._
 import Actor._
 
-object CalWorthCon {
+object CalWorthCon extends App {
 	val stockUnitsMap = StockPriceSpider getStockUnitsMap
 
 	val caller = self
@@ -19,17 +19,20 @@ object CalWorthCon {
 
 	val netWorth = (0.0 /: (1 to stockUnitsMap.size)) {
 		(worth, index) =>
-			reactWithin(10000) {
+			receiveWithin(10000) {
 				case (symbol: String, latestClosingPrice: Double) =>
 					val units = stockUnitsMap(symbol)
 					val value = units * latestClosingPrice
 					println("%-7s %-5d %-16f %f".format(symbol, units, latestClosingPrice, value))
-					netWorth += value
+					worth + value
+				case TIMEOUT => 
+					println("Timeout")
+					0
 			}
 	}
 
 	val endTime = System.nanoTime()
 
-	println("The total value of your investment is $" + netWorth)
-	println("(Took " + (endTime - startTime) / 1000000000 + " seconds)")
+	println("The total value of your investment is $" + netWorth)	//233857
+	println("(Took " + (endTime - startTime) / 1000000000 + " seconds)")	//12s
 }

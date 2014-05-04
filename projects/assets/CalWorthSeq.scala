@@ -1,10 +1,10 @@
 package HackingScala.projects.assets
 
-object CalWorthSeq {
+object CalWorthSeq extends App {
 	val stockUnitsMap = StockPriceSpider getStockUnitsMap
 
-	println("Today is " + new ajava.util.Date())
-	println("Ticker\t\tUnits\t\tClosing Price($)\t\tTotal Value($)")
+	println("Today is " + new java.util.Date())
+	println("Ticker Units Closing Price($) Total Value($)")
 
 	val startTime = System.nanoTime()
 
@@ -13,15 +13,15 @@ object CalWorthSeq {
 			val (symbol, units) = element
 
 			val latestClosingPrice = StockPriceSpider getLatestClosingPrice symbol
-			val val = latestClosingPrice * units
+			val value =  units * latestClosingPrice
+			
+			println("%-7s %-5d %-16f %f".format(symbol, units, latestClosingPrice, value))
 
-			worth += val
-
-			println("%-7s %-5d %-16f %f".format(symbol, units, latestClosingPrice, val))
+			worth + value
 	}
 
 	val endTime = System.nanoTime()
 
-	println("The total value of your investments is $" + netWorth)
-	println("(Took " + (endTime - startTime) / 1000000000 + " seconds)")
+	println("The total value of your investments is $" + netWorth)	//233857
+	println("(Took " + (endTime - startTime) / 1000000000 + " seconds)")	//67s
 }

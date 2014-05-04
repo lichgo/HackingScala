@@ -1,6 +1,8 @@
-package HackingScala.projects/assets
+package HackingScala.projects.assets
 
-object StockPriceSpider {
+import scala.collection.mutable.Map
+
+object StockPriceSpider extends App {
 	def getLatestClosingPrice(symbol: String) = {
 		val url = "http://ichart.finance.yahoo.com/table.csv?s=" + symbol + "&a=00&b=01&c=" + new java.util.Date().getYear
 
@@ -9,15 +11,18 @@ object StockPriceSpider {
 		val closingPrice = mostRecentData.split(",")(4).toDouble
 		closingPrice
 	}
+	
+	println("GOOG: " + getLatestClosingPrice("GOOG"))
 
 	def getStockUnitsMap() = {
-		val stocks = scala.xml.XML.load("stocks.xml")
+		val stocks = scala.xml.XML.load("src/HackingScala/projects/assets/stocks.xml")
 
 		(Map[String, Int]() /: (stocks \ "symbol")) {
 			(map, symbolNode) =>
-				val ticker = (symbol \ "@ticker").toString
-				val units = (symbol \ "units").text.toInt
+				val ticker = (symbolNode \ "@ticker").toString
+				val units = (symbolNode \ "units").text.toInt
 				map(ticker) = units
+				map	// returned value is the tmp map
 		}
 	}
 }

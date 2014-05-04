@@ -1,6 +1,6 @@
 package HackingScala.projects.assets
 
-object UsingXML {
+object UsingXML extends App {
   val XMLFragment = 
     <symbols>
       <symbol ticker="AAPL"><units>200</units></symbol>

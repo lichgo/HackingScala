@@ -75,7 +75,7 @@ object collections extends App {
   println(list.dropWhile(_ % 2 == 1))	//List(2,3,4)
   
   // foldLeft (foldRight)
-  val sum = list.foldLeft(100)( (m, n) => m + n ) // the first is element value, the second is tmp result
+  val sum = list.foldLeft(100)( (m, n) => m + n ) // the first is element value, the second is tmp result, returned value is m
   println("sum " + sum)
   
   // flatten
