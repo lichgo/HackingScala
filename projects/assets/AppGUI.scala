@@ -1,10 +1,11 @@
 import HackingScala.projects.assets
-
 import scala.swing._
 import event._
 import scala.actors._
 import Actor._
 import java.awt.Color
+import scala.actors.scheduler.SingleThreadedScheduler
+import HackingScala.projects.assets.LogicHelper
 
 object AppGui extends SimpleSwingApplication {
 	def top = mainFrame
@@ -14,9 +15,9 @@ object AppGui extends SimpleSwingApplication {
 
 		val dateLabel = new Label { text = "Last updated: ----- " }
 
-		val valuesTable = new Table ( LogicHelper.getInitTableData,
+		val valuesTable = new Table ( LogicHelper.genInitTableData,
 			Array("Ticker", "Units", "Price", "Value") ) {
-			showGrid = true,
+			showGrid = true
 			gridColor = Color.BLACK
 		}
 
@@ -25,7 +26,7 @@ object AppGui extends SimpleSwingApplication {
 
 		contents = new BoxPanel(Orientation.Vertical) {
 			contents += dateLabel
-			contents += valueLabel
+			contents += valuesTable
 			contents += new ScrollPane(valuesTable)
 			contents += new FlowPanel {
 				contents += updateButton
@@ -39,14 +40,14 @@ object AppGui extends SimpleSwingApplication {
 		reactions += {
 			case ButtonClicked(button) =>
 				button.enabled = false
-				LogicHlper fetchPrice uiUpdater
+				LogicHelper fetchPrice uiUpdater
 		}
 
 		val uiUpdater = new Actor {
 			def act = {
 				react {
 					case (symbol: String, units: Int, price: Double, value: Double) =>
-						updateTable(_, _, _, _)
+						updateTable(symbol, units, price, value)
 					case netAsset =>
 						netAssetLabel.text = "Net Asset: " + netAsset
 						dateLabel.text = "Last updated: " + new java.util.Date()
@@ -54,7 +55,7 @@ object AppGui extends SimpleSwingApplication {
 				}
 			}
 
-			override protected def scheduler() = new SingleThreadedScheduler
+			//override protected def scheduler() = new SingleThreadedScheduler
 		}
 		uiUpdater.start()
 

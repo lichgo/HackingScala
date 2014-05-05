@@ -1,5 +1,7 @@
 package HackingScala.projects.assets
 
+import scala.collection.mutable.Map
+
 object StockPriceSpider extends App {
 	def getLatestClosingPrice(symbol: String) = {
 		val url = "http://ichart.finance.yahoo.com/table.csv?s=" + symbol + "&a=00&b=01&c=" + new java.util.Date().getYear
