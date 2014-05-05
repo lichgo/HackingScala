@@ -1,7 +1,5 @@
 package HackingScala.projects.assets
 
-import scala.collection.mutable.Map
-
 object StockPriceSpider extends App {
 	def getLatestClosingPrice(symbol: String) = {
 		val url = "http://ichart.finance.yahoo.com/table.csv?s=" + symbol + "&a=00&b=01&c=" + new java.util.Date().getYear
@@ -21,7 +19,7 @@ object StockPriceSpider extends App {
 			(map, symbolNode) =>
 				val ticker = (symbolNode \ "@ticker").toString
 				val units = (symbolNode \ "units").text.toInt
-				map(ticker) = units
+				map(ticker) = units // always return a new map
 				map	// returned value is the tmp map
 		}
 	}
